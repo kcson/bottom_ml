@@ -21,10 +21,19 @@ def relu(x):
 # plt.show()
 
 A = np.array([1, 2, 3, 4])
-print(A)
-print(np.ndim(A))
-print(A.shape)
+# print(A)
+# print(np.ndim(A))
+# print(A.shape)
 
 B = np.array([[1, 2], [3, 4], [5, 6]])
 C = np.array([7, 8])
-print(np.dot(B, C))
+# print(np.dot(B, C))
+
+X = np.array([1.0, 0.5])
+W1 = np.array([[0.1, 0.3, 0.5], [0.2, 0.4, 0.6]])
+B1 = np.array([0.1, 0.2, 0.3])
+
+A1 = np.dot(X, W1) + B1
+Z1 = sigmoid(A1)
+print(A1)
+print(Z1)
