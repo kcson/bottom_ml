@@ -45,11 +45,18 @@ def forward(network, x):
 
 
 def softmax(a):
-    exp_a = np.exp(a)
+    c = np.max(a)
+    exp_a = np.exp(a - c)
     sum_exp_a = np.sum(exp_a)
-    y1 = exp_a / sum_exp_a
+    y = exp_a / sum_exp_a
 
-    return y1
+    return y
+
+
+a = np.array([0.3, 2.9, 4.0])
+s = softmax(a)
+print(s)
+print(np.sum(s))
 
 
 network = init_network()
