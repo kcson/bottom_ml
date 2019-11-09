@@ -1,3 +1,7 @@
+from dataset.mnist import load_mnist
+from PIL import Image
+
+import sys, os
 import numpy as np
 import matplotlib.pylab as plt
 
@@ -53,16 +57,31 @@ def softmax(a):
     return y
 
 
-a = np.array([0.3, 2.9, 4.0])
-s = softmax(a)
-print(s)
-print(np.sum(s))
+def img_show(img):
+    pil_img = Image.fromarray(np.uint8(img))
+    pil_img.show()
 
 
-network = init_network()
-x = np.array([1.0, 0.5])
-y = forward(network, x)
-print(y)
+(x_train, t_train), (x_test, t_text) = load_mnist(flatten=True, normalize=False)
+
+img = x_train[0]
+label = t_train[0]
+print(label)
+
+print(img.shape)
+img = img.reshape(28,28)
+print(img.shape)
+
+img_show(img)
+# a = np.array([0.3, 2.9, 4.0])
+# s = softmax(a)
+# print(s)
+# print(np.sum(s))
+#
+# network = init_network()
+# x = np.array([1.0, 0.5])
+# y = forward(network, x)
+# print(y)
 
 # x = np.arange(-5.0, 5.0, 0.1)
 # y = relu(x)
