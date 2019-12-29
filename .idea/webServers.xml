@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6d2c7737-85bc-4a9c-815a-d710f1731084" name="EC2 linux" url="http://13.124.232.78">
+        <fileTransfer host="13.124.232.78" port="22" privateKey="$USER_HOME$/onedrive/amazonkey/Amazont2micro.ppk" rootFolder="/home/ec2-user" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
