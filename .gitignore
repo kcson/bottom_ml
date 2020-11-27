@@ -1,3 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 /dataset/mnist.pkl
 /ch07/params.pkl
+/.idea/sshConfigs.xml
