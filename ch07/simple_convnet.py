@@ -18,8 +18,7 @@ class SimpleConvNet:
         pool_output_size = int(filter_num * (conv_output_size / 2) * (conv_output_size / 2))
 
         self.params = {}
-        self.params['W1'] = weight_init_std * np.random.randn(filter_num, input_dim[0],
-                                                              filter_size, filter_size)
+        self.params['W1'] = weight_init_std * np.random.randn(filter_num, input_dim[0], filter_size, filter_size)
         self.params['b1'] = np.zeros(filter_num)
         self.params['W2'] = weight_init_std * np.random.randn(pool_output_size, hidden_size)
         self.params['b2'] = np.zeros(hidden_size)
@@ -27,8 +26,7 @@ class SimpleConvNet:
         self.params['b3'] = np.zeros(output_size)
 
         self.layers = OrderedDict()
-        self.layers['Conv1'] = Convolution(self.params['W1'], self.params['b1'],
-                                           conv_param['stride'], conv_param['pad'])
+        self.layers['Conv1'] = Convolution(self.params['W1'], self.params['b1'], conv_param['stride'], conv_param['pad'])
         self.layers['Relu1'] = Relu()
         self.layers['Pool1'] = Pooling(pool_h=2, pool_w=2, stride=2)
         self.layers['Affine1'] = Affine(self.params['W2'], self.params['b2'])

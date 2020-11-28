@@ -1,4 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 /dataset/mnist.pkl
 /ch07/params.pkl
+/ch08/deep_convnet_params.pkl
 /.idea/sshConfigs.xml
+/.idea

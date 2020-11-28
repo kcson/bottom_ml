@@ -8,6 +8,7 @@ from ch07.simple_convnet import SimpleConvNet
 from trainer import Trainer
 
 (x_train, t_train), (x_test, t_test) = load_mnist(flatten=False)
+(x_train, t_train), (x_test, t_test) = (x_train[:6000], t_train[:6000]), (x_test[:6000], t_test[:6000])
 
 max_epochs = 20
 
@@ -24,3 +25,14 @@ trainer.train()
 
 network.save_params("params.pkl")
 print("Saved Network Parameters!")
+
+# 그래프 그리기
+markers = {'train': 'o', 'test': 's'}
+x = np.arange(max_epochs)
+plt.plot(x, trainer.train_acc_list, marker='o', label='train', markevery=2)
+plt.plot(x, trainer.test_acc_list, marker='s', label='test', markevery=2)
+plt.xlabel("epochs")
+plt.ylabel("accuracy")
+plt.ylim(0, 1.0)
+plt.legend(loc='lower right')
+plt.show()
