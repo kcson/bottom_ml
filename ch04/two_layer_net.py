@@ -35,3 +35,22 @@ class TwoLayerNet:
 
         accuracy = np.sum(y == t) / float(x.shape[0])
         return accuracy
+
+    def numerical_gradient(self, x, t):
+        loss_W = lambda W: self.loss(x, t)
+
+        grads = {}
+        grads['W1'] = numerical_gradient(loss_W, self.params['W1'])
+        grads['b1'] = numerical_gradient(loss_W, self.params['b1'])
+        grads['W2'] = numerical_gradient(loss_W, self.params['W2'])
+        grads['b2'] = numerical_gradient(loss_W, self.params['b2'])
+
+        return grads
+
+    def gradient(self, x, t):
+        None
+
+
+net = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
+x = np.random.rand(50, 784)
+print(net.predict(x))

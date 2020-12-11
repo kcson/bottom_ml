@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 import numpy as np
-from ch04 import softmax, cross_entropy_error, numerical_gradient
+from ch04_1 import softmax, cross_entropy_error, numerical_gradient
 
 
 class Relu:
