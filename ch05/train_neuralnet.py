@@ -1,9 +1,11 @@
 import numpy as np
 from dataset.mnist import load_mnist
 from ch05.tow_layer_net import TwoLayerNet
+from optimizer import *
 
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
+optimizer = SGD()
 
 iters_num = 50000
 train_size = x_train.shape[0]
@@ -21,10 +23,12 @@ for i in range(iters_num):
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
 
-    grad = network.gradient(x_batch, t_batch)
+    grads = network.gradient(x_batch, t_batch)
+    params = network.params
+    optimizer.update(params,grads)
 
-    for key in ('W1', 'b1', 'W2', 'b2'):
-        network.params[key] -= learning_rate * grad[key]
+    # for key in ('W1', 'b1', 'W2', 'b2'):
+    #     network.params[key] -= learning_rate * grads[key]
 
     loss = network.loss(x_batch, t_batch)
     train_loss_list.append(loss)

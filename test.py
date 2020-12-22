@@ -1,5 +1,25 @@
+import random
 import numpy as np
 from util import im2col
+from matplotlib import pyplot as plt
+
+linker1_x = []
+linker1_y = []
+linker2_x = []
+linker2_y = []
+num = 50
+for i in range(0, num):
+    x = random.randint(0, num)
+    y = random.randint(0, num)
+    plt.text(x+0.1, y+0.1, "{}".format(i + 1))
+    linker1_x.append(x)
+    linker1_y.append(y)
+    # linker2_x.append(random.randint(0, num))
+    # linker2_y.append(random.randint(0, num))
+
+plt.plot(linker1_x, linker1_y, 'o--')
+# plt.plot(linker2_x, linker2_y, '^--')
+plt.show()
 
 x = np.array([[
     [
