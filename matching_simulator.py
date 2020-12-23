@@ -47,9 +47,9 @@ parking_log_x = 50
 parking_log_y = 50
 
 # 거리
-alpha = 1
+alpha = 0.5
 # matching 수
-beta = 0
+beta = 0.5
 
 epoch = 1000
 
@@ -112,12 +112,17 @@ for _ in range(epoch):
 
     total_distance = 0
     for index, driver in enumerate(drivers):
-        print(str(driver.idx) + " : " + str(driver.moving_dis) + " : " + str(driver.matching_count))
+        # print(str(driver.idx) + " : " + str(driver.moving_dis) + " : " + str(driver.matching_count))
         total_distance += driver.moving_dis
+    drivers = sorted(drivers, key=lambda d: d.matching_count)
+    epoch_max_matching += drivers[len(drivers)-1].matching_count
+    epoch_min_matching += drivers[0].matching_count
     epoch_distance += total_distance
-    print(total_distance)
+    # print(total_distance)
 
-print("average : " + str(epoch_distance / epoch))
+print("average distance: " + str(epoch_distance / epoch))
+print("max matching : " + str(epoch_max_matching / epoch))
+print("min matching : " + str(epoch_min_matching / epoch))
 
 markers = ['o--', 'v--', 's--']
 legend = []
@@ -127,4 +132,4 @@ for index, driver in enumerate(drivers):
     for idx in range(len(driver.history_x)):
         plt.text(driver.history_x[idx] + 0.1, driver.history_y[idx] + 0.1, "{}".format(idx + 1))
 plt.legend(legend)
-# plt.show()
+plt.show()
