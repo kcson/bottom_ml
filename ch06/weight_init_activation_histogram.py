@@ -15,6 +15,7 @@ for i in range(hidden_layer_size):
 
     # w = np.random.randn(node_num, node_num) * 1
     w = np.random.randn(node_num, node_num) * np.sqrt(2.0/node_num)
+    # w = np.random.randn(node_num, node_num) / np.sqrt(node_num)
 
     a = np.dot(x, w)
     # z = sigmoid(a)
