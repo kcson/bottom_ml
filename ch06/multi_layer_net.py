@@ -7,19 +7,22 @@ from collections import OrderedDict
 
 class MultiLayerNet:
     def __init__(self, input_size, hidden_size_list, output_size):
+        self.input_size = input_size
+        self.hidden_size_list = hidden_size_list
+        self.output_size = output_size
+        self.hidden_layer_num = len(hidden_size_list)
         self.params = {}
+
+        # 가중치 매개변수 초기화 , layer 생성
         self.layers = OrderedDict()
-        hidden_size = 0
-        for index, hidden_size in enumerate(hidden_size_list):
-            str_index = str(index + 1)
-            self.params['W' + str_index] = np.sqrt(2.0 / input_size) * np.random.randn(input_size, hidden_size)
-            self.params['b' + str_index] = np.zeros(hidden_size)
-            self.layers['Affine' + str_index] = Affine(self.params['W' + str_index], self.params['b' + str_index])
-            input_size = hidden_size
-        str_index = str(len(hidden_size_list) + 1)
-        self.params['W' + str_index] = np.sqrt(2.0 / hidden_size) * np.random.randn(hidden_size, output_size)
-        self.params['b' + str_index] = np.zeros(output_size)
-        self.layers['Affine' + str_index] = Affine(self.params['W' + str_index], self.params['b' + str_index])
+        all_size_list = [self.input_size] + self.hidden_size_list + [self.output_size]
+        for index in range(1, len(all_size_list)):
+            # HE 초기값(활성화 함수 Relu사용)
+            self.params['W' + str(index)] = np.sqrt(2.0 / all_size_list[index - 1]) * np.random.randn(all_size_list[index - 1], all_size_list[index])
+            self.params['b' + str(index)] = np.zeros(all_size_list[index])
+            self.layers['Affine' + str(index)] = Affine(self.params['W' + str(index)], self.params['b' + str(index)])
+            if index <= len(all_size_list) - 2:
+                self.layers['Activation_function' + str(index)] = Relu()
 
         self.lastLayer = SoftmaxWithLoss()
 
@@ -64,8 +67,8 @@ class MultiLayerNet:
             dout = layer.backward(dout)
 
         grads = {}
-        for index, _ in enumerate(layers):
-            grads['W' + str(index + 1)] = self.layers['Affine' + str(index + 1)].dW
-            grads['b' + str(index + 1)] = self.layers['Affine' + str(index + 1)].db
+        for index in range(1, self.hidden_layer_num + 2):
+            grads['W' + str(index)] = self.layers['Affine' + str(index)].dW
+            grads['b' + str(index)] = self.layers['Affine' + str(index)].db
 
         return grads
