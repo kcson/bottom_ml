@@ -35,4 +35,4 @@ plt.xlabel("epochs")
 plt.ylabel("accuracy")
 plt.ylim(0, 1.0)
 plt.legend(loc='lower right')
-plt.show()
+plt.show();
