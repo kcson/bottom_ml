@@ -1,3 +1,6 @@
+import os, sys
+
+sys.path.append(os.pardir)
 import numpy as np
 from functions import softmax, cross_entropy_error
 from gradient import numerical_gradient

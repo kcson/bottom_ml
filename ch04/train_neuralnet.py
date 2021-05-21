@@ -1,3 +1,5 @@
+import os, sys
+sys.path.append(os.pardir)
 import numpy as np
 from dataset.mnist import load_mnist
 from ch04.two_layer_net import TwoLayerNet
@@ -9,7 +11,7 @@ train_loss_list = []
 train_acc_list = []
 test_acc_list = []
 
-iters_num = 1
+iters_num = 100
 train_size = x_train.shape[0]
 batch_size = 100
 learning_rate = 0.1
