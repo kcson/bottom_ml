@@ -1,6 +1,9 @@
+import os, sys
+sys.path.append(os.pardir)
+
 import numpy as np
 from dataset.mnist import load_mnist
-from ch05.tow_layer_net import TwoLayerNet
+from tow_layer_net import TwoLayerNet
 from optimizer import *
 
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
@@ -41,4 +44,3 @@ for i in range(iters_num):
 
         print(train_acc, test_acc)
 
-print(train_acc, test_acc)
