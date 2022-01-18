@@ -1,7 +1,8 @@
-import os, sys
+import os
+import sys
+
 sys.path.append(os.pardir)
 
-import numpy as np
 from dataset.mnist import load_mnist
 from tow_layer_net import TwoLayerNet
 from optimizer import *
@@ -28,7 +29,7 @@ for i in range(iters_num):
 
     grads = network.gradient(x_batch, t_batch)
     params = network.params
-    optimizer.update(params,grads)
+    optimizer.update(params, grads)
 
     # for key in ('W1', 'b1', 'W2', 'b2'):
     #     network.params[key] -= learning_rate * grads[key]
@@ -43,4 +44,3 @@ for i in range(iters_num):
         test_acc_list.append(test_acc)
 
         print(train_acc, test_acc)
-
