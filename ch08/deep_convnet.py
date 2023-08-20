@@ -12,7 +12,7 @@ class DeepConvNet:
                  conv_param4={'filter_num': 32, 'filter_size': 3, 'pad': 2, 'stride': 1},
                  conv_param5={'filter_num': 64, 'filter_size': 3, 'pad': 1, 'stride': 1},
                  conv_param6={'filter_num': 64, 'filter_size': 3, 'pad': 1, 'stride': 1},
-                 hidden_size=50, output_size=10):
+                 hidden_size=50, output_size=64):
         pre_node_num = np.array([1 * 3 * 3, 16 * 3 * 3, 16 * 3 * 3, 32 * 3 * 3, 32 * 3 * 3, 64 * 3 * 3, 64 * 4 * 4, hidden_size])
         weight_init_scales = np.sqrt(2.0 / pre_node_num)
 
